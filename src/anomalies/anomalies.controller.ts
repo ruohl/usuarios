@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AnomaliesService } from './anomalies.service';
 import { CreateAnomalyDto } from './dtos/anomalies.dto';
 import { Anomaly } from './interfaces/anomalies.interface';
@@ -15,5 +15,10 @@ export class AnomaliesController {
     @Get()
     findAll() {
         return this.anomaliesService.findAll();
+    }
+
+    @Get(':id')
+    getById(@Param('id') id: string) {
+        return this.anomaliesService.get(id);
     }
 }
